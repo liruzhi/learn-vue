@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+    {{ message }}
+</div>
+
+</body>
+<script>
+    var app = new Vue({
+        el: '#app',
+
+        //data的对象式写法
+        // data: {
+        //     message: 'Hello Vuess!'
+        // }
+
+        //data的函数式写法，学习组件时需要用到这种写法，否则会报错。该函数是vue实例调用的。data函数不能写成箭头函数，需要写为该种方式
+        // data:function () {
+        data() {
+            console.log("@@@", this)//此时的this为vue实例。如果是箭头函数其没有自己的this，就只能向上层找，最终找到的window
+            return {
+                message:"hello world"
+            }
+        }
+
+        // data:()=> {
+        //     console.log("@@@", this)//此时的this为vue实例。如果是箭头函数其没有自己的this，就只能向上层找，最终找到的window
+        //     return {
+        //         message:"hello world"
+        //     }
+        // }
+    })
+    // console.log(app)
+    // app.$mount("#app")//el的第二种写法
+</script>
+</html>

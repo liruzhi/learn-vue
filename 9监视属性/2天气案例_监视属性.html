@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+<div id="root">
+    {{ message }}
+    <h2>今天天气很{{info}}</h2>
+    <button @click="change">切换天气</button>
+</div>
+
+</body>
+<script>
+    var vm = new Vue({
+        el: '#root',
+        //data的对象式写法
+        data: {
+            message: 'Hello Vue!',
+            isHot:true
+        },
+        methods:{
+            change(){
+                this.isHot = !this.isHot
+            }
+        },
+        computed: {
+            info(){
+                if (this.isHot) return "炎热"
+                return "凉爽"
+            }
+        },
+        watch:{
+            // isHot:{
+            //     immediate:true,//初始化时，让handler调用一下
+            //     deep:true,//深度监视
+            //     handler(newValue,oldValue){
+            //         console.log(newValue,oldValue)
+            //     }
+            // }
+
+            isHot(newValue,oldValue) {
+                console.log(newValue,oldValue)
+            }
+        }
+    })
+</script>
+</html>

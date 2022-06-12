@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+<div id="root">
+    {{ message }}
+    <p>methods : {{getNow()}}</p>
+    <p>computed : {{now}}</p>
+</div>
+
+<ul id="v-for-object" class="demo">
+<!--    <li v-for="value in object">-->
+    <li v-for="value in object">
+        {{ value }}
+    </li>
+</ul>
+
+<div id="example-2">
+    <!-- `greet` 是在下面定义的方法名 -->
+    <button v-on:click="greet">Greet</button>
+
+
+<!--    <button v-on:click="warn('Form cannot be submitted yet.')">-->
+    <button v-on:click="warn('Form cannot be submitted yet.', $event)">
+        Submit
+    </button>
+</div>
+
+</body>
+<script>
+    var vm = new Vue({
+        el: '#root',
+        //data的对象式写法
+        data: {
+            message: 'Hello Vue!'
+        },
+        methods:{
+            getNow: function () {
+                return Date.now()
+            }
+        },
+        computed: {
+            now: function () {
+                return Date.now()
+            }
+        }
+    })
+
+    new Vue({
+        el: '#v-for-object',
+        data: {
+            object: {
+                title: 'How to do lists in Vue',
+                author: 'Jane Doe',
+                publishedAt: '2016-04-10'
+            }
+        }
+    })
+
+    var example2 = new Vue({
+        el: '#example-2',
+        data: {
+            name: 'Vue.js'
+        },
+        // 在 `methods` 对象中定义方法
+        methods: {
+            greet: function (event) {
+                // `this` 在方法里指向当前 Vue 实例
+                alert('Hello ' + this.name + '!')
+                // `event` 是原生 DOM 事件
+                if (event) {
+                    alert(event.target.tagName)
+                }
+            },
+            warn: function (message, event) {
+                // 现在我们可以访问原生事件对象
+                if (event) {
+                    event.preventDefault()
+                }
+                alert(message)
+            }
+        }
+    })
+
+    // 也可以用 JavaScript 直接调用方法
+    example2.greet() // => 'Hello Vue.js!'
+</script>
+</html>

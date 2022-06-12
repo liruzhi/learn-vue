@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+<div id="root">
+<!--    <button v-on:click="showInfo">点我提示信息</button>-->
+<!--    v-bind:可以简写为:-->
+<!--    v-on:可以简写为@-->
+    <button @click="showInfo1">点我提示信息1</button>
+<!--    <button @click="showInfo2(66)">点我提示信息2</button>-->
+    <button @click="showInfo2(66, $event)">点我提示信息2</button>
+</div>
+
+</body>
+<script>
+    var vm = new Vue({
+        el: '#root',
+        //data的对象式写法
+        data: {
+            //配置在data里的数据会做数据劫持，数据代理
+            message: 'Hello Vuess!'
+        },
+        methods:{
+            showInfo1(){
+                alert("aaaa")
+            },
+            showInfo2(num, event){
+                alert(num)
+                console.log(event)
+            }
+        }
+    })
+</script>
+</html>

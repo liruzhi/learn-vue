@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+<div id="root">
+    {{ message }}
+    <!--
+    1.Vue中常用的按键别名
+        回车 enter
+        删除 delete （捕获删除和退格键）
+        退出 esc
+        空格 space
+        换行 tab (特殊 必须配合keydown使用)
+        上 up
+        下 down
+        左 left
+        右 right
+    -->
+<!--    <input type="text" placeholder="按下回车提示输入" @keyup="showInfo">-->
+    <input type="text" placeholder="按下回车提示输入" @keyup.enter="showInfo">
+<!--    ctrl + y-->
+    <input type="text" placeholder="按下回车提示输入" @keyup.ctrl.y="showInfo">
+</div>
+
+</body>
+<script>
+    var vm = new Vue({
+        el: '#root',
+        //data的对象式写法
+        data: {
+            message: 'Hello Vuess!'
+        },
+        methods:{
+            showInfo(e) {
+                // if (e.keyCode != 13) return//回车
+                console.log(e.target.value)
+                // console.log(e.keyCode)
+                // console.log(e.key)
+            }
+        }
+    })
+</script>
+</html>
